@@ -7,6 +7,22 @@ Team membership:  Rachel Shellborn (Captain)
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+V 1.7 (02-08-2017)
+Implemented enhancements:
+Added History Controller and History View to retrieve and display all entries in the History table to show all transactions
+
+Fixed bugs:
+
+V 1.6 (02-08-2017)
+Implemented enhancements:
+Added a parts controller, view, and added a routing rule.
+
+V 1.5 (02-08-2017)
+Implemented enhancements:
+Added the view page to render parts field data. 
+
+Fixed bugs:
+None
 
 V.1.4(02-08-2017)
 Created Assembly controller and view
@@ -18,6 +34,11 @@ None
 
 V 1.3 (02-08-2017)
 Implemented enhancements:
+Added History php file and added dummy data
+
+Fixed bugs:
+None
+
 Added favicon and put logo image beside plant title.
 Added functions in each model for getting data for the homepage.
 
@@ -36,13 +57,4 @@ Added a parts model.
 Added random parts as mock data.
 Added photos for parts to public/ img
 
-V 1.4 (02-08-2017)
-Implemented enhancements:
-Added a parts controller, view, and added a routing rule.
 
-V 1.5 (02-08-2017)
-Implemented enhancements:
-Added the view page to render parts field data. 
-
-Fixed bugs:
-None
