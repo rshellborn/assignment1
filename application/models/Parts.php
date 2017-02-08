@@ -10,6 +10,7 @@
 
 class Parts extends CI_Model {
 
+    // note: having parts for a complete robot is going to be rare in the next iteration. 
     var $data = array(
         array('id' => '1', 'partCode' => 'a1', 'creationPlant' => 'HeadOffice', 'caCode' => 'b7c247',
             'creationDateTime' => '2017/02/08/06/30', 'image' => 'a1.jpeg'),
@@ -30,7 +31,7 @@ class Parts extends CI_Model {
         parent::__construct();
     }
 
-    // retrieve a single quote
+    // retrieve a single part given the id 
     public function get($which)
     {
         // iterate over the data until we find the one we want
@@ -40,7 +41,7 @@ class Parts extends CI_Model {
         return null;
     }
 
-    // retrieve all of the quotes
+    // retrieve all of the parts
     public function all()
     {
         return $this->data;
