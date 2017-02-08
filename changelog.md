@@ -7,17 +7,22 @@ Team membership:  Rachel Shellborn (Captain)
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+V 1.6 (02-08-2017)
+Implemented enhancements:
+Added History Controller and History View to retrieve and display all entries in the History table to show all transactions
+
+Fixed bugs:
+None
+
 V 1.3 (02-08-2017)
 Implemented enhancements:
-<<<<<<< HEAD
 Added History php file and added dummy data
 
 Fixed bugs:
 None
-=======
+
 Added favicon and put logo image beside plant title.
 Added functions in each model for getting data for the homepage.
->>>>>>> abba8ea1d32c82ec4c8761f659915558c030065d
 
 V 1.2 (02-08-2017)
 Implemented enhancements:
