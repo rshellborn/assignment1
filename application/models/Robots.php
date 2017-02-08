@@ -30,7 +30,7 @@ class Robots extends CI_Model {
 		parent::__construct();
 	}
 
-	// retrieve a single quote
+	// retrieve a single robot
 	public function get($which)
 	{
 		// iterate over the data until we find the one we want
@@ -40,12 +40,12 @@ class Robots extends CI_Model {
 		return null;
 	}
 
-	// retrieve all of the quotes
+	// retrieve all of the robots
 	public function all()
 	{
 		return $this->data;
 	}
-
+        // retrieves total number of bots in inventory
 	public function totalBots() {
 	    return sizeof($this->data);
     }
