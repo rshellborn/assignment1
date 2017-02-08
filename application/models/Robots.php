@@ -46,4 +46,8 @@ class Robots extends CI_Model {
 		return $this->data;
 	}
 
+	public function totalBots() {
+	    return sizeof($this->data);
+    }
+
 }
