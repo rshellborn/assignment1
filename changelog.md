@@ -31,5 +31,9 @@ V 1.4 (02-08-2017)
 Implemented enhancements:
 Added a parts controller, view, and added a routing rule.
 
+V 1.5 (02-08-2017)
+Implemented enhancements:
+Added the view page to render parts field data. 
+
 Fixed bugs:
 None
