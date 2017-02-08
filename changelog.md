@@ -7,6 +7,13 @@ Team membership:  Rachel Shellborn (Captain)
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+V 1.3 (02-08-2017)
+Implemented enhancements:
+Added History php file and added dummy data
+
+Fixed bugs:
+None
+
 V 1.2 (02-08-2017)
 Implemented enhancements:
 Added bootstrap and made style changes.
