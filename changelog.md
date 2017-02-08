@@ -7,6 +7,11 @@ Team membership:  Rachel Shellborn (Captain)
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
-## *Version 1.0*
+V 1.1 (02-08-2017)
+Implemented enhancements:
+Added a parts model.
+Added random parts as mock data.
+Added photos for parts to public/ img
 
-Release Date: 
+Fixed bugs:
+None
