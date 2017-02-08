@@ -1,3 +1,12 @@
-{thetable}
-    <h1>This is just a simple image gallery :)</h1>
-    <p>The images above are the three most recently posted.</p>
+
+    <h1></h1>
+    <table>
+        <tr>
+            <td>Data</td>
+            <td>Data</td>
+        </tr>
+        <tr>
+            <td>Data</td>
+            <td>Data</td>
+        </tr>
+    </table>
