@@ -7,6 +7,11 @@ Team membership:  Rachel Shellborn (Captain)
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+V 1.3 (02-08-2017)
+Implemented enhancements:
+Added favicon and put logo image beside plant title.
+Added functions in each model for getting data for the homepage.
+
 V 1.2 (02-08-2017)
 Implemented enhancements:
 Added bootstrap and made style changes.

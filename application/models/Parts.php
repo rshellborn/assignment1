@@ -46,4 +46,7 @@ class Parts extends CI_Model {
         return $this->data;
     }
 
+    public function totalParts() {
+        return sizeof($this->data);
+    }
 }

@@ -3,18 +3,18 @@
     <table class="table table-bordered">
         <tr>
             <td>Parts on Hand</td>
-            <td>200</td>
+            <td>{totalParts}</td>
         </tr>
         <tr>
             <td>Assembled Bots</td>
-            <td>40</td>
+            <td>{totalBots}</td>
         </tr>
         <tr>
             <td>Money Spent</td>
-            <td>$5000</td>
+            <td>${totalSpent}</td>
         </tr>
         <tr>
-            <td>Assembled Bots</td>
-            <td>$123888</td>
+            <td>Money Earned</td>
+            <td>${totalEarned}</td>
         </tr>
     </table>
