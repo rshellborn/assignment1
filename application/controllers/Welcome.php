@@ -32,5 +32,4 @@ class Welcome extends Application
         $this->data['totalParts'] = $totalParts;
         $this->render();
     }
-
 }
