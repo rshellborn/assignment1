@@ -22,5 +22,9 @@ Added a parts model.
 Added random parts as mock data.
 Added photos for parts to public/ img
 
+V 1.4 (02-08-2017)
+Implemented enhancements:
+Added a parts controller, view, and added a routing rule.
+
 Fixed bugs:
 None
