@@ -17,3 +17,12 @@ body {background-color: #c9ffd6;}
 	color:white;
 }
 .oneimage {padding:1em; width:300px;text-align:center;}
+
+.row>div {margin-bottom:50px;}
+
+.space{padding-bottom: 50px;}
+
+.wrap{text-align: center;}
+
+#btnSearch,#btnClear{display: inline-block;vertical-align: top;}
+
