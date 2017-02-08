@@ -44,6 +44,7 @@ class History extends CI_Model {
 		return $this->data;
 	}
 
+	// retrieves total amount spent
 	public function totalSpent() {
 	    $total = 0;
 
@@ -54,6 +55,7 @@ class History extends CI_Model {
 	    return $total;
     }
 
+    // retrieves total amount earned
     public function totalEarned() {
         $total = 0;
 
@@ -63,5 +65,4 @@ class History extends CI_Model {
 
         return $total;
     }
-
 }
