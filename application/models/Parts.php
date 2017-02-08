@@ -46,7 +46,8 @@ class Parts extends CI_Model {
     {
         return $this->data;
     }
-
+    
+    // retrieves total number of parts in inventory
     public function totalParts() {
         return sizeof($this->data);
     }

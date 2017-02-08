@@ -7,6 +7,15 @@ Team membership:  Rachel Shellborn (Captain)
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+
+V.1.4(02-08-2017)
+Created Assembly controller and view
+Updated bootstrap and css to display all parts in assebly view
+Adjusted routes and autoload files to allow for proper navigation
+
+Fixed Bugs: 
+None
+
 V 1.3 (02-08-2017)
 Implemented enhancements:
 Added favicon and put logo image beside plant title.
