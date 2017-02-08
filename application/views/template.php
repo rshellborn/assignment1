@@ -3,6 +3,7 @@
     <head>
         <title>{pagetitle}</title>
         <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+        <link rel="shortcut icon" href="/img/favicon.png" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/reset.css" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/text.css" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
@@ -13,7 +14,7 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <span class="myhead">Kiwi Plant</span>
+                <span class="myhead"><img width="50px" src="/img/favicon.png" />Kiwi Plant</span>
                 <span class="mynav">
                     <ul>
                         <li><a href="/">Home</a></li>
