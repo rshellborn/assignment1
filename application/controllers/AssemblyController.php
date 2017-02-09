@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Assembly extends Application
+class AssemblyController extends Application
 {
 
 	/**
