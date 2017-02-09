@@ -7,6 +7,12 @@ Team membership:  Rachel Shellborn (Captain)
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+V 2.0 (02-08-2017)
+Implemented enhancements:
+Changing title for history page. Tested entire site. Ready for release 2.0
+
+Fixed bugs:
+
 V 1.7 (02-08-2017)
 Implemented enhancements:
 Added History Controller and History View to retrieve and display all entries in the History table to show all transactions

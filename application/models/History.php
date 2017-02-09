@@ -44,7 +44,18 @@ class History extends CI_Model {
     }
 
 
-    //returning the totalEarned from all transactions
+    // retrieves total amount spent
+    public function totalSpent() {
+        $total = 0;
+
+        foreach ($this->data as $record)
+            if ($record['transactionType'] == 'purchase')
+                $total += $record['money'];
+
+        return $total;
+    }
+
+    // retrieves total amount earned
     public function totalEarned() {
         $total = 0;
 

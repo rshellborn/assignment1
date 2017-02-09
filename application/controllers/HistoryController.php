@@ -16,7 +16,7 @@ class HistoryController extends Application
      */
     public function index()
     {       
-        $this->data['pagetitle'] = 'Dashboard'; //title
+        $this->data['pagetitle'] = 'History'; //title
         $this->data['pagebody'] = 'history'; //view file
         
         $source = $this->history->all();
