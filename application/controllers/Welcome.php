@@ -19,9 +19,17 @@ class Welcome extends Application
 	 */
 	public function index()
 	{
+        $totalSpent = $this->history->totalSpent();
+        $totalEarned = $this->history->totalEarned();
+        $totalParts = $this->parts->totalParts();
+        $totalBots = $this->robots->totalBots();
+
         $this->data['pagetitle'] = 'Dashboard';
         $this->data['pagebody'] = 'welcome';
+        $this->data['totalSpent'] = $totalSpent;
+        $this->data['totalEarned'] = $totalEarned;
+        $this->data['totalBots'] = $totalBots;
+        $this->data['totalParts'] = $totalParts;
         $this->render();
     }
-
 }

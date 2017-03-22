@@ -3,15 +3,18 @@
     <head>
         <title>{pagetitle}</title>
         <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+        <link rel="shortcut icon" href="/img/favicon.png" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/reset.css" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/text.css" />
-        <link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/bootstrap-3.3.7-dist/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/lightbox.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
     </head>
     <body>
         <div id="wrapper">
             <div id="header">
-                <span class="myhead">Kiwi Plant</span>
+                <span class="myhead"><img width="50px" src="/img/favicon.png" />Kiwi Plant</span>
                 <span class="mynav">
                     <ul>
                         <li><a href="/">Home</a></li>
@@ -24,7 +27,7 @@
             <div class="alone"></div>
             <div id="content">
             	<!-- injection here -->
-                <h1>{pagetitle}</h1>
+                <h1 class="text-center">{pagetitle}</h1>
             	{content}
             </div>
             <div id="footer" class="span12">
