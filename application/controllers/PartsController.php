@@ -12,9 +12,7 @@ class PartsController extends Application
 		$parts = array();
 		foreach ($source as $record)
 		{
-			$parts[] = array ('id' => $record['id'], 'partCode' => $record['partCode'], 
-				'creationPlant' => $record['creationPlant'], 'caCode' => $record['caCode'],
-				'creationDateTime' => $record['creationDateTime']);
+                    $parts[] = array ('id' => $record['id'], 'partCode' => $record['partCode']);
 		}
 
 		// send the data to the view 
@@ -24,5 +22,15 @@ class PartsController extends Application
 		$this->data['pagebody'] = 'parts'; // the view file 
 
 		$this->render();
+    }
+    
+    public function details($id) {
+        $part = $this->parts->get($id);
+        
+        $this->data['parts'] = $part;
+
+		$this->data['pagetitle'] = 'Part ' . $id . ' Details';
+		$this->data['pagebody'] = 'partDetails'; // the view file 
+                $this->render();
     }
 }
