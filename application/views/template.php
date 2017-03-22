@@ -21,6 +21,10 @@
                         <li><a href="/parts">Parts</a></li>
                         <li><a href="/assembly">Assembly</a></li>
                         <li><a href="/history">History</a></li>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                          <li><a href="/roles/actor/Guest">Guest</a></li>
+                          <li><a href="/roles/actor/Owner">Owner</a></li>
+                        </ul>
                     </ul>
                 </span>
             </div>
@@ -34,7 +38,7 @@
                 Copyright &copy; 2014,  <a href="mailto:rachel@shellborn.com">Team NGU</a>.
             </div>
         </div>
-        <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script> 
-        <script type="text/javascript" src="js/lightbox.min.js"></script> 
+        <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="js/lightbox.min.js"></script>
     </body>
 </html>

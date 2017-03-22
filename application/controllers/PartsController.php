@@ -26,8 +26,13 @@ class PartsController extends Application
     
     public function details($id) {
         $part = $this->parts->get($id);
+
+        //cd code, part code, amount, plant
         
-        $this->data['parts'] = $part;
+        $this->data['caCode'] = $part['caCode'];
+        $this->data['partCode'] = $part['partCode'];
+        $this->data['plant'] = $part['plant'];
+        $this->data['amount'] = $part['amount'];
 
 		$this->data['pagetitle'] = 'Part ' . $id . ' Details';
 		$this->data['pagebody'] = 'partDetails'; // the view file 

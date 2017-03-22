@@ -1,21 +1,14 @@
 <div class="row">
     <!-- TODO add images -->
-    <table class="table table-bordered">
+    <table>
         <tr>
-            <th>ID</th>
-            <th>Part Code</th>
-            <th>Creation Plant</th>
-            <th>CA Code</th>
-            <th>Time Of Creation</th>
+            <td><img src="../img/{partCode}.jpeg" /></td>
+            <td>
+                <span>CA Code: {caCode}</span><br/>
+                <span>Part Code: {partCode}</span><br/>
+                <span>Creation Plant: {plant}</span><br/>
+                <span>Amount: ${amount}</span><br/>
+            </td>
         </tr>
-        {parts}
-        <tr>
-            <td>{id}</td>
-            <td>{partCode}</td>
-            <td>{creationPlant}</td>
-            <td>{caCode}</td>
-            <td>{creationDateTime}</td>
-        </tr>
-        {/parts} 
     </table>
 </div>
