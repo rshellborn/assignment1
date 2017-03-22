@@ -10,8 +10,7 @@ class Robots extends CI_Model {
 
 	var $data = array(
             
-		array('id' => '1', 'parts' => array(1,2,3), 'img' => 'a.jpg', 'where' => '/a',
-			'what' => 'Robot A'),
+		array('id' => '1', 'parts' => array(1,2,3), 'img' => 'a.jpg'),
 		array('id' => '2', 'parts' => array(4,5,6), 'img' => 'b.jpg', 'where' => '/b',
 			'what' => 'Robot B'),
 		array('id' => '3', 'parts' => array(6,7,8), 'img' => 'c.jpg', 'where' => '/c',
