@@ -54,4 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['history'] = 'HistoryController/index';
 $route['parts'] = 'PartsController/index';
+$route['parts/(:num)'] = "PartsController/details/$1";
 $route['assembly'] = 'AssemblyController';
