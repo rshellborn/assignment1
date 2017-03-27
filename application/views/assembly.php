@@ -1,10 +1,14 @@
 <div class="row">
     <div class="col-xs-12">
-    {parts}
-    <div class="col-xs-6 space"><img src="/img/{image}" title="{partCode}"/>
+    {robots}
+    <div class="col-xs-6 space">
+        <img src="/img/{image1}.jpeg"/>
+        <img src="/img/{image2}.jpeg"/>
+        <img src="/img/{image3}.jpeg"/>
+        <h1>{amount}</h1>
     <input type="checkbox" value="1" id="checkbox" name="bo" />
     </div>
-    {/parts}
+    {/robots}
     </div>
 </div>
 <div class="row">
