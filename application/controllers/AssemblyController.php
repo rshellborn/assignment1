@@ -11,15 +11,24 @@ class AssemblyController extends Application
 	public function index()
 	{
 		// build the list of parts, to pass on to our view
-		$source = $this->parts->all();
+		$source = $this->robots->all();
 		$parts = array ();
+
 		foreach ($source as $record)
 		{
-			$parts[] = array ('partCode' => $record['partCode'], 'image' => $record['image']);
+		    $parts = explode(',', $record->parts);
+
+            $image1 = $parts[0];
+            $image2 = $parts[1];
+            $image3 = $parts[2];
+
+			$robots[] = array ('amount' => $record->amount, 'image1' => $image1, 'image2' => $image2, 'image3' => $image3);
 		}
-		$this->data['parts'] = $parts;
-                $this->data['pagetitle'] = 'Assembly';
-                $this->data['pagebody'] = 'assembly';
+
+		$this->data['robots'] = $robots;
+        $this->data['pagetitle'] = 'Assembly';
+        $this->data['pagebody'] = 'assembly';
+
 		$this->render();
 	}
 

@@ -52,6 +52,7 @@ INSERT INTO `history` (`id`, `transactionType`, `quantity`, `amount`, `timestamp
 --
 
 CREATE TABLE `parts` (
+  `id` int(11) NOT NULL,
   `caCode` varchar(20) NOT NULL,
   `partCode` varchar(16) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
@@ -62,10 +63,13 @@ CREATE TABLE `parts` (
 -- Dumping data for table `parts`
 --
 
-INSERT INTO `parts` (`caCode`, `partCode`, `amount`, `plant`) VALUES
-('0P7520128R', 'c3', '2.00', 'Berry'),
-('6C7890123D', 'a1', '1.00', 'Apple'),
-('9A7430123F', 'b2', '5.00', 'Banana');
+INSERT INTO `parts` (`id`, `caCode`, `partCode`, `amount`, `plant`) VALUES
+(1, '0P7520128R', 'a1', '2.00', 'Berry'),
+(2, '6C7890123D', 'a2', '1.00', 'Apple'),
+(3, '9A7430123F', 'a3', '5.00', 'Banana'),
+(4, '7ASF6AHF83', 'b1', '5.00', 'Berry'),
+(5, '937F7NNDO0', 'b2', '5.00', 'Apple'),
+(6, '18NF6SNM43', 'b3', '5.00', 'Banana');
 
 -- --------------------------------------------------------
 
@@ -84,7 +88,8 @@ CREATE TABLE `robots` (
 --
 
 INSERT INTO `robots` (`id`, `parts`, `amount`) VALUES
-(1, 'a1,b2,c3', '8.00');
+(1, 'a1,a2,a3', '8.00'),
+(2, 'b1,b2,b3', '15.00');
 
 --
 -- Indexes for dumped tables
