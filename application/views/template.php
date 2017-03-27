@@ -89,6 +89,8 @@
                                 <button onclick="myFunction()" class="dropbtn">Role</button>
                                 <div id="myDropdown" class="dropdown-content">
                                     <a href="/roles/actor/Worker">Worker</a>
+                                    <a href="/roles/actor/Supervisor">Supervisor</a>
+                                    <a href="/roles/actor/Boss">Boss</a>
                                     <a href="/roles/actor/Guest">Guest</a>
                                 </div>
                             </div>

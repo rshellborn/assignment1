@@ -86,3 +86,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 defined('ROLE_GUEST') OR define('ROLE_GUEST', 'Guest');
 defined('ROLE_WORKER') OR define('ROLE_WORKER', 'Worker');
+defined('ROLE_BOSS') OR define('ROLE_BOSS', 'Boss');
+defined('ROLE_SUPERVISOR') OR define('ROLE_SUPERVISOR', 'Supervisor');
