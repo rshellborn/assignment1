@@ -20,8 +20,8 @@ class Parts extends CI_Model {
     public function get($which)
     {
         // iterate over the data until we find the one we want
-        foreach ($this->data as $record)
-            if ($record['id'] == $which)
+        foreach ($this->all() as $record)
+            if ($record->id == $which)
                 return $record;
         return null;
     }
@@ -29,12 +29,13 @@ class Parts extends CI_Model {
     // retrieve all of the parts
     public function all()
     {
-        return $this->data;
+        $query = $this->db->get('parts');
+        return $query->result();
     }
     
     // retrieves total number of parts in inventory
     public function totalParts() {
-        return sizeof($this->data);
+        return sizeof($this->all());
     }
 
 }

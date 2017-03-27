@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class History extends CI_Model {
+class History extends CI_Model  {
 
     // Constructor
     public function __construct()
@@ -18,8 +18,8 @@ class History extends CI_Model {
     public function get($which)
     {
         // iterate over the data until we find the one we want
-        foreach ($this->data as $record)
-                if ($record['purchaseId'] == $which)
+        foreach ($this->db->get('history') as $record)
+                if ($record->id == $which)
                         return $record;
         return null;
     }
@@ -27,7 +27,9 @@ class History extends CI_Model {
     // retrieve all of the transaction history entries
     public function all()
     {
-        return $this->data;
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('history');
+        return $query->result();
     }
 
 
@@ -35,9 +37,9 @@ class History extends CI_Model {
     public function totalSpent() {
         $total = 0;
 
-        foreach ($this->data as $record)
-            if ($record['transactionType'] == 'purchase')
-                $total += $record['money'];
+        foreach ($this->all() as $record)
+            if ($record->transactionType == 'Purchase')
+                $total += $record->amount;
 
         return $total;
     }
@@ -46,9 +48,9 @@ class History extends CI_Model {
     public function totalEarned() {
         $total = 0;
 
-        foreach ($this->data as $record)
-            if ($record['transactionType'] == 'sold' || $record['transactionType'] == 'sold')
-                $total += $record['money'];
+        foreach ($this->all() as $record)
+            if ($record->transactionType == 'Return' || $record->transactionType == 'Sale')
+                $total += $record->amount;
 
         return $total;
     }

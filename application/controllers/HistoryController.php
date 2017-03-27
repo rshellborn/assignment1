@@ -20,13 +20,16 @@ class HistoryController extends Application
         $this->data['pagebody'] = 'history'; //view file
         
         $source = $this->history->all();
+
         $history = array();
         foreach ($source as $record)
         {
-                $history[] = array ('purchaseId' => $record['purchaseId'], 'transactionId' => $record['transactionId'], 
-                    'AssembliesCode' => $record['AssembliesCode'], 'transactionType' => $record['transactionType'], 'date' => $record['date'], 'time' => $record['time'], 'money' => $record['money']);
+            $history[] = array ('id' => $record->id, 'transactionType' => $record->transactionType,
+                    'quantity' => $record->quantity, 'amount' => $record->amount, 'timestamp' => $record->timestamp,
+                    'plant' => $record->plant);
         }
-        $this->data['history'] = $history; 
+
+        $this->data['history'] = $history;
         $this->render();
     }
 

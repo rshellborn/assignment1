@@ -18,8 +18,8 @@ class Robots extends CI_Model {
 	public function get($which)
 	{
 		// iterate over the data until we find the one we want
-		foreach ($this->data as $record)
-			if ($record['id'] == $which)
+		foreach ($this->all() as $record)
+			if ($record->id == $which)
 				return $record;
 		return null;
 	}
@@ -27,11 +27,12 @@ class Robots extends CI_Model {
 	// retrieve all of the robots
 	public function all()
 	{
-		return $this->data;
+        $query = $this->db->get('robots');
+        return $query->result();
 	}
         // retrieves total number of bots in inventory
 	public function totalBots() {
-	    return sizeof($this->data);
+	    return sizeof($this->all());
     }
 
 }

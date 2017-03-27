@@ -1,23 +1,21 @@
 <div class="row">
     <table class="table table-bordered">
         <tr>
-            <th>Purchase ID</th>
             <th>Transaction ID</th>
             <th>Transaction Type</th>
-            <th>Assemblies Code</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Money</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Timestamp</th>
+            <th>Plant</th>
         </tr>
         {history}
         <tr>
-            <td>{purchaseId}</td>
-            <td>{transactionId}</td>
+            <td>{id}</td>
             <td>{transactionType}</td>
-            <td>{AssembliesCode}</td>
-            <td>{date}</td>
-            <td>{time}</td>
-            <td>{money}</td>
+            <td>{quantity}</td>
+            <td>{amount}</td>
+            <td>{timestamp}</td>
+            <td>{plant}</td>
         </tr>
         {/history} 
     </table>
