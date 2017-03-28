@@ -10,9 +10,8 @@ class AssemblyController extends Application
 	 */
 	public function index()
 	{
-		// build the list of parts, to pass on to our view
+		// build the list of robots, to pass on to our view
 		$source = $this->robots->all();
-		$parts = array ();
 
 		foreach ($source as $record)
 		{
@@ -22,14 +21,122 @@ class AssemblyController extends Application
             $image2 = $parts[1];
             $image3 = $parts[2];
 
-			$robots[] = array ('amount' => $record->amount, 'image1' => $image1, 'image2' => $image2, 'image3' => $image3);
+			$robots[] = array ('id' => $record->id, 'amount' => $record->amount, 'image1' => $image1, 'image2' => $image2, 'image3' => $image3);
 		}
 
+        // build the list of parts, to pass on to our view
+        $source = $this->parts->all();
+
+        $parts = array();
+        foreach ($source as $record)
+        {
+            $model = $record->partCode[0];
+            $piece = $record->partCode[1];
+            $line  = $this->getLine($model);
+
+            if($piece == 1) {
+                //if top piece
+                $topParts[] = array('id' => $record->id, 'partCode' => $record->partCode, 'model' => strtoupper($model), 'line' => $line);
+            } else if ($piece == 2) {
+                //if torso piece
+                $torsoParts[] = array('id' => $record->id, 'partCode' => $record->partCode, 'model' => strtoupper($model), 'line' => $line);
+            } else if ($piece == 3) {
+                //if bottom piece
+                $bottomParts[] = array('id' => $record->id, 'partCode' => $record->partCode, 'model' => strtoupper($model), 'line' => $line);
+            }
+        }
+
+        // send the data to the view
+        $this->data['topParts'] = $topParts;
+        $this->data['torsoParts'] = $torsoParts;
+        $this->data['bottomParts'] = $bottomParts;
 		$this->data['robots'] = $robots;
         $this->data['pagetitle'] = 'Assembly';
         $this->data['pagebody'] = 'assembly';
 
 		$this->render();
 	}
+
+	public function handle() {
+	    $type = $this->input->post('submitType');
+
+        if($type == "Assemble") {
+            $this->assemble();
+        } else if($type == "Return") {
+            $this->returnPart();
+        } else if($type == "Ship to Head Office") {
+            $this->ship();
+        }
+    }
+
+	public function assemble() {
+        $top = $this->input->post('top');
+        $torso = $this->input->post('torso');
+        $bottom = $this->input->post('bottom');
+
+        if($top == null || $torso == null || $bottom == null) {
+            echo "<script>
+                    alert('You must select a top piece, torso piece, and bottom piece to assemble a robot!');
+                    window.location.href='/assembly';
+                  </script>";
+        }
+
+        $this->assembleRobot($top, $torso, $bottom);
+        $this->removeParts($top, $torso, $bottom);
+
+        redirect('/assembly/#robots');
+    }
+
+    //removes parts that made the robot from the database
+    public function removeParts($top, $torso, $bottom) {
+        $topPart = $this->parts->get($top)->id;
+        $torsoPart = $this->parts->get($torso)->id;
+        $bottomPart = $this->parts->get($bottom)->id;
+
+        $this->parts->remove($topPart);
+        $this->parts->remove($torsoPart);
+        $this->parts->remove($bottomPart);
+    }
+
+    //creates a robot and inserts it into the database
+    public function assembleRobot($top, $torso, $bottom) {
+        $amount = 0;
+
+        $topPart = $this->parts->get($top)->partCode;
+        $amount += $this->parts->get($top)->amount;
+        $torsoPart = $this->parts->get($torso)->partCode;
+        $amount += $this->parts->get($torso)->amount;
+        $bottomPart = $this->parts->get($bottom)->partCode;
+        $amount += $this->parts->get($bottom)->amount;
+
+        $data = array(
+            'parts' => $topPart . "," . $torsoPart . "," . $bottomPart,
+            'amount' => $amount
+        );
+
+        $this->robots->add($data);
+    }
+
+    //this is for next time?
+    public function returnPart() {
+        redirect('/assembly');
+    }
+
+    //this is for next time?
+    public function ship() {
+        redirect('/assembly');
+    }
+
+
+    //Returns the line for the robot part
+    public function getLine($letter) {
+        if (preg_match("/^[a-l]$/", $letter)) {
+            return "Household";
+        } else if(preg_match("/^[m-v]$/", $letter)) {
+            return "Butler";
+        } else {
+            return "Companion";
+        }
+    }
 
 }
