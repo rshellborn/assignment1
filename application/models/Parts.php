@@ -31,6 +31,12 @@ class Parts extends CI_Model {
         $this->db->insert('parts', $part);
     }
 
+    //removes a part from the database
+    public function remove($partId) {
+        $this->db->where('id', $partId);
+        $this->db->delete('parts');
+    }
+
     // retrieve all of the parts
     public function all()
     {

@@ -58,3 +58,4 @@ $route['parts/build'] = 'PartsController/build';
 $route['parts/buy'] = 'PartsController/buy';
 $route['parts/(:num)'] = "PartsController/details/$1";
 $route['assembly'] = 'AssemblyController';
+$route['assembly/handle'] = 'AssemblyController/handle';

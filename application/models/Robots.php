@@ -24,6 +24,11 @@ class Robots extends CI_Model {
 		return null;
 	}
 
+    //add a robot into the database
+    public function add($robot) {
+        $this->db->insert('robots', $robot);
+    }
+
 	// retrieve all of the robots
 	public function all()
 	{
