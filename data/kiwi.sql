@@ -29,7 +29,7 @@ DROP TABLE IF EXISTS `robots`;
 --
 
 CREATE TABLE `history` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `transactionType` varchar(20) NOT NULL,
   `quantity` int(11) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
@@ -41,9 +41,9 @@ CREATE TABLE `history` (
 -- Dumping data for table `history`
 --
 
-INSERT INTO `history` (`id`, `transactionType`, `quantity`, `amount`, `timestamp`, `plant`) VALUES
-(1, 'Return', 1, '10.50', '2013-08-30 19:05:00', 'Apple'),
-(2, 'Purchase', 1, '12.50', '2013-08-30 20:05:00', 'Berry');
+INSERT INTO `history` (`transactionType`, `quantity`, `amount`, `timestamp`, `plant`) VALUES
+('Return', 1, '10.50', '2013-08-30 19:05:00', 'Apple'),
+('Purchase', 1, '12.50', '2013-08-30 20:05:00', 'Berry');
 
 -- --------------------------------------------------------
 
@@ -52,24 +52,25 @@ INSERT INTO `history` (`id`, `transactionType`, `quantity`, `amount`, `timestamp
 --
 
 CREATE TABLE `parts` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `caCode` varchar(20) NOT NULL,
   `partCode` varchar(16) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
-  `plant` varchar(20) NOT NULL
+  `plant` varchar(20) NOT NULL,
+  `timestamp` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `parts`
 --
 
-INSERT INTO `parts` (`id`, `caCode`, `partCode`, `amount`, `plant`) VALUES
-(1, '0P7520128R', 'a1', '2.00', 'Berry'),
-(2, '6C7890123D', 'a2', '1.00', 'Apple'),
-(3, '9A7430123F', 'a3', '5.00', 'Banana'),
-(4, '7ASF6AHF83', 'b1', '5.00', 'Berry'),
-(5, '937F7NNDO0', 'b2', '5.00', 'Apple'),
-(6, '18NF6SNM43', 'b3', '5.00', 'Banana');
+INSERT INTO `parts` (`caCode`, `partCode`, `amount`, `plant`, `timestamp`) VALUES
+('0P7520128R', 'a1', '2.00', 'Berry', '2013-08-30 20:05:00'),
+('6C7890123D', 'a2', '1.00', 'Apple', '2013-08-30 20:05:00'),
+('9A7430123F', 'a3', '5.00', 'Banana', '2013-08-30 20:05:00'),
+('7ASF6AHF83', 'b1', '5.00', 'Berry', '2013-08-30 20:05:00'),
+('937F7NNDO0', 'b2', '5.00', 'Apple', '2013-08-30 20:05:00'),
+('18NF6SNM43', 'b3', '5.00', 'Banana', '2013-08-30 20:05:00');
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,7 @@ INSERT INTO `parts` (`id`, `caCode`, `partCode`, `amount`, `plant`) VALUES
 --
 
 CREATE TABLE `robots` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `parts` varchar(30) NOT NULL,
   `amount` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -87,31 +88,9 @@ CREATE TABLE `robots` (
 -- Dumping data for table `robots`
 --
 
-INSERT INTO `robots` (`id`, `parts`, `amount`) VALUES
-(1, 'a1,a2,a3', '8.00'),
-(2, 'b1,b2,b3', '15.00');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `history`
---
-ALTER TABLE `history`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `parts`
---
-ALTER TABLE `parts`
-  ADD PRIMARY KEY (`caCode`);
-
---
--- Indexes for table `robots`
---
-ALTER TABLE `robots`
-  ADD PRIMARY KEY (`id`);
+INSERT INTO `robots` (`parts`, `amount`) VALUES
+('a1,a2,a3', '8.00'),
+('b1,b2,b3', '15.00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

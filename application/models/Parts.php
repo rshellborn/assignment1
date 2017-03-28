@@ -26,6 +26,11 @@ class Parts extends CI_Model {
         return null;
     }
 
+    //add a part into the database
+    public function add($part) {
+        $this->db->insert('parts', $part);
+    }
+
     // retrieve all of the parts
     public function all()
     {

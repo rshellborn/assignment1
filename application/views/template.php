@@ -80,10 +80,7 @@
                 <span class="myhead"><img width="50px" src="/img/favicon.png" />Kiwi Plant</span>
                 <span class="mynav">
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/parts">Parts</a></li>
-                        <li><a href="/assembly">Assembly</a></li>
-                        <li><a href="/history">History</a></li>
+                        {nav}
                         <li>
                             <div class="dropdown">
                                 <button onclick="myFunction()" class="dropbtn">Role</button>

@@ -54,4 +54,9 @@ class History extends CI_Model  {
 
         return $total;
     }
+
+    //add transaction into the database
+    public function add($transaction) {
+        $this->db->insert('history', $transaction);
+    }
 }
