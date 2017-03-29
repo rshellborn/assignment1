@@ -61,6 +61,7 @@ class Application extends CI_Controller
     //links for boss role
     function getBossNav() {
         return '<li><a href="/">Home</a></li>
+                <li><a href="/manage">Manage</a></li>
                 <li><a href="/history">History</a></li>';
     }
 

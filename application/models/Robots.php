@@ -40,4 +40,14 @@ class Robots extends CI_Model {
 	    return sizeof($this->all());
     }
 
+    //deletes all rows from table
+    public function deleteAll() {
+        $this->db->empty_table('robots');
+    }
+
+    //removes a robot from the database
+    public function remove($robotId) {
+        $this->db->where('id', $robotId);
+        $this->db->delete('robots');
+    }
 }
