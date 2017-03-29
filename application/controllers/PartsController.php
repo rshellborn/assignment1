@@ -115,8 +115,6 @@ class PartsController extends Application
             $this->parts->add($data);
 
             $timestamp = $part->stamp;
-            $quantity++;
-            $totalAmount += $amount;
 
             //adding part to history table
             $data = array(
