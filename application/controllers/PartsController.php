@@ -63,7 +63,7 @@ class PartsController extends Application
 
     //makes api call to umbrella to get parts, store part in database and update history table
     public function build() {
-        $apikey = file_get_contents('../' . base_url() . 'data/apikey.txt');
+        $apikey = $this->properties->getApiKey();
 
         $response = file_get_contents('https://umbrella.jlparry.com//work/mybuilds?key=' . $apikey);
 
@@ -75,12 +75,12 @@ class PartsController extends Application
 
     //makes api call to umbrella to buy parts, store part in database and update history table
     public function buy() {
-        $apikey = file_get_contents('../' . base_url() . 'data/apikey.txt');
+        $apikey = $this->properties->getApiKey();
 
         $response = file_get_contents('https://umbrella.jlparry.com//work/buybox?key=' . $apikey);
 
         if(substr($response, 0, 4) == "Oops") {
-            $this->session->set_userdata('error', "This plant does not have enough money to afford a box of parts.");
+            $this->session->set_userdata('error', $response);
             redirect('/parts');
         }
 
@@ -96,6 +96,7 @@ class PartsController extends Application
         //if there are no parts return to page
         if($parts == null) {
             echo $parts;
+            return;
         }
 
         $quantity = 0;

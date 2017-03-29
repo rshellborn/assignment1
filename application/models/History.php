@@ -79,4 +79,9 @@ class History extends CI_Model  {
     public function add($transaction) {
         $this->db->insert('history', $transaction);
     }
+
+    //deletes all rows from table
+    public function deleteAll() {
+        $this->db->empty_table('history');
+    }
 }
