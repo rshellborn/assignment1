@@ -1,3 +1,6 @@
+<div class="row">
+    <span id="error">{error}</span>
+</div>
 <form action="assembly/handle" method="POST">
 <div class="row">
     <h1 class="text-center">Top Pieces</h1>

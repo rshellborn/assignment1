@@ -25,13 +25,33 @@ class History extends CI_Model  {
     }
 
     // retrieve all of the transaction history entries
-    public function all()
+    public function all($column = 'timestamp', $filterModel = 'all', $filterLine = 'all')
     {
-        $this->db->order_by('id', 'asc');
-        $query = $this->db->get('history');
+        $this->db->order_by($column, 'asc');
+        $this->db->from('history');
+
+        if($filterLine != 'all') {
+            $this->db->where('line', $filterLine);
+        }
+        if($filterModel != 'all') {
+            $this->db->where('model', $filterModel);
+        }
+
+        $query = $this->db->get();
         return $query->result();
     }
 
+    public function filter($filter, $column = 'timestamp') {
+        $this->db->order_by($column, 'asc');
+        $this->db->from('history');
+        $this->db->where('line', "Household");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function size() {
+        return sizeof($this->all());
+    }
 
     // retrieves total amount spent
     public function totalSpent() {
@@ -39,7 +59,7 @@ class History extends CI_Model  {
 
         foreach ($this->all() as $record)
             if ($record->transactionType == 'Purchase')
-                $total += $record->amount;
+                $total += $record->cost;
 
         return $total;
     }
@@ -49,8 +69,8 @@ class History extends CI_Model  {
         $total = 0;
 
         foreach ($this->all() as $record)
-            if ($record->transactionType == 'Return' || $record->transactionType == 'Sale')
-                $total += $record->amount;
+            if ($record->transactionType == 'Return' || $record->transactionType == 'Sold')
+                $total += $record->cost;
 
         return $total;
     }

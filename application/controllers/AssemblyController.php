@@ -15,7 +15,7 @@ class AssemblyController extends Application
 
 		foreach ($source as $record)
 		{
-		    $parts = explode(',', $record->parts);
+		    $parts = explode(',', $record->partCodes);
 
             $image1 = $parts[0];
             $image2 = $parts[1];
@@ -51,10 +51,12 @@ class AssemblyController extends Application
         $this->data['torsoParts'] = $torsoParts;
         $this->data['bottomParts'] = $bottomParts;
 		$this->data['robots'] = $robots;
+        $this->data['error'] = $this->session->userdata('error');
         $this->data['pagetitle'] = 'Assembly';
         $this->data['pagebody'] = 'assembly';
 
 		$this->render();
+        $this->session->set_userdata('error', "");
 	}
 
 	public function handle() {
@@ -75,10 +77,8 @@ class AssemblyController extends Application
         $bottom = $this->input->post('bottom');
 
         if($top == null || $torso == null || $bottom == null) {
-            echo "<script>
-                    alert('You must select a top piece, torso piece, and bottom piece to assemble a robot!');
-                    window.location.href='/assembly';
-                  </script>";
+            $this->session->set_userdata('error', "You must select a top piece, torso piece, and bottom piece to assemble a robot!");
+            redirect('/assembly');
         }
 
         $this->assembleRobot($top, $torso, $bottom);
@@ -102,15 +102,21 @@ class AssemblyController extends Application
     public function assembleRobot($top, $torso, $bottom) {
         $amount = 0;
 
-        $topPart = $this->parts->get($top)->partCode;
+        $topPartCode = $this->parts->get($top)->partCode;
+        $topCaCode = $this->parts->get($top)->caCode;
         $amount += $this->parts->get($top)->amount;
-        $torsoPart = $this->parts->get($torso)->partCode;
+
+        $torsoPartCode = $this->parts->get($torso)->partCode;
+        $torsoCaCode = $this->parts->get($torso)->caCode;
         $amount += $this->parts->get($torso)->amount;
-        $bottomPart = $this->parts->get($bottom)->partCode;
+
+        $bottomPartCode = $this->parts->get($bottom)->partCode;
+        $bottomCaCode = $this->parts->get($bottom)->caCode;
         $amount += $this->parts->get($bottom)->amount;
 
         $data = array(
-            'parts' => $topPart . "," . $torsoPart . "," . $bottomPart,
+            'partCodes' => $topPartCode . "," . $torsoPartCode . "," . $bottomPartCode,
+            'caCodes' => $topCaCode . "," . $torsoCaCode . "," . $bottomCaCode,
             'amount' => $amount
         );
 
