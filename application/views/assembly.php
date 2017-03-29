@@ -1,52 +1,53 @@
-<div class="row">
+<div class="row" style="text-align:center;font-size:150%;color:#FF0000" 
+    
     <span id="error">{error}</span>
 </div>
 <form action="assembly/handle" method="POST">
 <div class="row">
-    <h1 class="text-center">Top Pieces</h1>
+    <h1 class="text-center customTopBorder">Top Pieces</h1>
     <table class="table table-bordered">
+        <div class="row noMargin customTopBorder customTopPadding noBottomMargin">
         {topParts}
-        <tr class="text-center">
-            <td>
-                <a href="parts/{id}"><img src="/img/{partCode}.jpeg" /></a><br/>
+        <div class="col-xs-4 text-center">
+                <a href="parts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
                 <span><strong>Line:</strong> {line}</span><br/>
                 <span><strong>Model:</strong> {model}</span><br/>
                 <input type="checkbox" value="{id}" id="checkbox" name="top" />
-            </td>
-        </tr>
+        </div>
         {/topParts}
+        </div>
     </table>
 
 
 
-    <h1 class="text-center">Torso Pieces</h1>
+    <h1 class="text-center customTopBorder">Torso Pieces</h1>
     <table class="table table-bordered">
-        {torsoParts}
-        <tr class="text-center">
-            <td>
-                <a href="parts/{id}"><img src="/img/{partCode}.jpeg" /></a><br/>
-                <span><strong>Line:</strong> {line}</span><br/>
-                <span><strong>Model:</strong> {model}</span><br/>
-                <input type="checkbox" value="{id}" id="checkbox" name="torso" />
-            </td>
-        </tr>
-        {/torsoParts}
+        <div class="row noMargin customTopBorder customTopPadding noBottomMargin">
+            {torsoParts}
+            <div class="col-xs-4 text-center">
+                    <a href="parts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
+                    <span><strong>Line:</strong> {line}</span><br/>
+                    <span><strong>Model:</strong> {model}</span><br/>
+                    <input type="checkbox" value="{id}" id="checkbox" name="torso" />
+            </div>
+            {/torsoParts}
+        </div>
     </table>
 
 
 
-    <h1 class="text-center">Bottom Pieces</h1>
+    <h1 class="text-center customTopBorder">Bottom Pieces</h1>
     <table class="table table-bordered">
+        <div class="row noMargin customTopBorder customTopPadding noBottomMargin">
         {bottomParts}
-        <tr class="text-center">
-            <td>
-                <a href="parts/{id}"><img src="/img/{partCode}.jpeg" /></a><br/>
+        <div class="col-xs-4 text-center">
+                <a href="parts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
                 <span><strong>Line:</strong> {line}</span><br/>
                 <span><strong>Model:</strong> {model}</span><br/>
                 <input type="checkbox" value="{id}" id="checkbox" name="bottom" />
-            </td>
-        </tr>
+        </div>
         {/bottomParts}
+        </div>
     </table>
 
     <div class="text-center">
