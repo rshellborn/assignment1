@@ -49,4 +49,9 @@ class Parts extends CI_Model {
         return sizeof($this->all());
     }
 
+    //deletes all rows from table
+    public function deleteAll() {
+        $this->db->empty_table('parts');
+    }
+
 }

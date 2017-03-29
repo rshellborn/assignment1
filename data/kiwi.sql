@@ -24,6 +24,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `history`;
 DROP TABLE IF EXISTS `parts`;
 DROP TABLE IF EXISTS `robots`;
+DROP TABLE IF EXISTS `properties`;
 --
 -- Table structure for table `history`
 --
@@ -110,6 +111,14 @@ INSERT INTO `robots` (`partCodes`, `caCodes`, `amount`) VALUES
 ('a1,a2,a3', '32cc94,73bc91,92ud74', '8.00'),
 ('b1,b2,b3', '84bd92,29fk26,27fm05', '15.00');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `robots`
+--
+
+CREATE TABLE `properties` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `apikey` varchar(10) NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
