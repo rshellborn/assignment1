@@ -20,11 +20,13 @@ class PartsController extends Application
 
 		// send the data to the view 
 		$this->data['parts'] = $parts;
+        $this->data['error'] = $this->session->userdata('error');
 
 		$this->data['pagetitle'] = 'Parts';
 		$this->data['pagebody'] = 'parts'; // the view file 
 
 		$this->render();
+        $this->session->set_userdata('error', "");
     }
 
     //for drilldown details of the part
@@ -68,7 +70,7 @@ class PartsController extends Application
         $parts = json_decode($response);
         $transactionType = "Built";
 
-        $this->handleParts($parts, $transactionType);
+        $this->handleParts($parts, $transactionType, "Part");
     }
 
     //makes api call to umbrella to buy parts, store part in database and update history table
@@ -77,15 +79,20 @@ class PartsController extends Application
 
         $response = file_get_contents('https://umbrella.jlparry.com//work/buybox?key=' . $apikey);
 
+        if(substr($response, 0, 4) == "Oops") {
+            $this->session->set_userdata('error', "This plant does not have enough money to afford a box of parts.");
+            redirect('/parts');
+        }
+
         $parts = json_decode($response);
         $transactionType = "Purchase";
         //assuming $10 per part since total cost is $100 for box of 10 parts
         $amount = 10.00;
 
-        $this->handleParts($parts, $transactionType, $amount);
+        $this->handleParts($parts, $transactionType, "Box of Parts", $amount);
     }
 
-    public function handleParts($parts, $transactionType, $amount = 0.00) {
+    public function handleParts($parts, $transactionType, $item, $amount = 0.00) {
         //if there are no parts return to page
         if($parts == null) {
             echo $parts;
@@ -95,6 +102,7 @@ class PartsController extends Application
         $totalAmount = 0;
 
         foreach($parts as $part) {
+            //adding part to parts table
             $data = array(
                 'caCode' => $part->id,
                 'partCode' => $part->model . $part->piece,
@@ -106,21 +114,36 @@ class PartsController extends Application
             $this->parts->add($data);
 
             $timestamp = $part->stamp;
-            $plant = $part->plant;
             $quantity++;
             $totalAmount += $amount;
+
+            //adding part to history table
+            $data = array(
+                'timestamp' => $timestamp,
+                'transactionType' => $transactionType,
+                'Item' => $item,
+                'fromPlant' => 'PRC',
+                'toPlant' => 'kiwi',
+                'cost' => $amount,
+                'line' => $this->getLine($part->model),
+                'model' => strtoupper($part->model),
+                'piece' => $this->getPiece($part->piece)
+            );
+
+            $this->history->add($data);
         }
 
-        $data = array(
-            'transactionType' => $transactionType,
-            'quantity' => $quantity,
-            'amount' => $totalAmount,
-            'timestamp' => $timestamp,
-            'plant' => $plant
-        );
-
-        $this->history->add($data);
-
         redirect('/parts');
+    }
+
+    public function getPiece($piece) {
+        switch ($piece) {
+            case 1: return "Top";
+            break;
+            case 2: return "Torso";
+            break;
+            case 3: return "Bottom";
+            default: return "Error";
+        }
     }
 }

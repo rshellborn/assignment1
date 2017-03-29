@@ -30,20 +30,37 @@ DROP TABLE IF EXISTS `robots`;
 
 CREATE TABLE `history` (
   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `transactionType` varchar(20) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
   `timestamp` datetime NOT NULL,
-  `plant` varchar(20) NOT NULL
+  `transactionType` varchar(20) NOT NULL,
+  `item` varchar(20) NOT NULL,
+  `cost` decimal(10,2) NOT NULL,
+  `fromPlant` varchar(20) NOT NULL,
+  `toPlant` varchar(20) NOT NULL,
+  `line` varchar(20) NULL,
+  `model` varchar(20) NULL,
+  `piece` varchar(20) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `history`
 --
 
-INSERT INTO `history` (`transactionType`, `quantity`, `amount`, `timestamp`, `plant`) VALUES
-('Return', 1, '10.50', '2013-08-30 19:05:00', 'Apple'),
-('Purchase', 1, '12.50', '2013-08-30 20:05:00', 'Berry');
+INSERT INTO `history` (`timestamp`, `transactionType`, `item`, `cost`, `fromPlant`, `toPlant`, `line`, `model`, `piece`) VALUES
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Household', 'A', 'Top'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Butler', 'M', 'Top'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Household', 'C', 'Torso'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Household', 'F', 'Bottom'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Household', 'H', 'Top'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Companion', 'Y', 'Torso'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Household', 'L', 'Bottom'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Companion', 'Z', 'Top'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Butler', 'N', 'Torso'),
+('2013-08-30 19:05:00', 'Purchase', 'Box of Parts', 10.00, 'PRC', 'kiwi', 'Butler', 'P', 'Torso'),
+('2017-01-13 8:30:00', 'Return', 'Part', 7.00, 'kiwi', 'PRC', 'Butler', 'P', 'Torso'),
+('2017-01-13 8:30:00', 'Built', 'Part', 0.00, 'PRC', 'kiwi', 'Household', 'B', 'Top'),
+('2017-01-13 8:30:00', 'Purchase', 'Part', 7.00, 'apple', 'kiwi', 'Household', 'F', 'Bottom'),
+('2017-01-13 8:30:00', 'Sold', 'Part', 15.00, 'kiwi', 'apple', 'Butler', 'O', 'Top'),
+('2017-01-13 8:30:00', 'Sold', 'Assembled Bot', 15.00, 'kiwi', 'PRC', 'Butler', 'M', NULL);
 
 -- --------------------------------------------------------
 
@@ -65,12 +82,12 @@ CREATE TABLE `parts` (
 --
 
 INSERT INTO `parts` (`caCode`, `partCode`, `amount`, `plant`, `timestamp`) VALUES
-('0P7520128R', 'a1', '2.00', 'Berry', '2013-08-30 20:05:00'),
-('6C7890123D', 'a2', '1.00', 'Apple', '2013-08-30 20:05:00'),
-('9A7430123F', 'a3', '5.00', 'Banana', '2013-08-30 20:05:00'),
-('7ASF6AHF83', 'b1', '5.00', 'Berry', '2013-08-30 20:05:00'),
-('937F7NNDO0', 'b2', '5.00', 'Apple', '2013-08-30 20:05:00'),
-('18NF6SNM43', 'b3', '5.00', 'Banana', '2013-08-30 20:05:00');
+('28nf37', 'a1', '2.00', 'Berry', '2013-08-30 20:05:00'),
+('37vn56', 'a2', '1.00', 'Apple', '2013-08-30 20:05:00'),
+('93ng67', 'a3', '5.00', 'Banana', '2013-08-30 20:05:00'),
+('44fj99', 'b1', '5.00', 'Berry', '2013-08-30 20:05:00'),
+('85bv73', 'b2', '5.00', 'Apple', '2013-08-30 20:05:00'),
+('85vn27', 'b3', '5.00', 'Banana', '2013-08-30 20:05:00');
 
 -- --------------------------------------------------------
 
@@ -80,7 +97,8 @@ INSERT INTO `parts` (`caCode`, `partCode`, `amount`, `plant`, `timestamp`) VALUE
 
 CREATE TABLE `robots` (
   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `parts` varchar(30) NOT NULL,
+  `partCodes` varchar(30) NOT NULL,
+  `caCodes` varchar(30) NOT NULL,
   `amount` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -88,9 +106,9 @@ CREATE TABLE `robots` (
 -- Dumping data for table `robots`
 --
 
-INSERT INTO `robots` (`parts`, `amount`) VALUES
-('a1,a2,a3', '8.00'),
-('b1,b2,b3', '15.00');
+INSERT INTO `robots` (`partCodes`, `caCodes`, `amount`) VALUES
+('a1,a2,a3', '32cc94,73bc91,92ud74', '8.00'),
+('b1,b2,b3', '84bd92,29fk26,27fm05', '15.00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
