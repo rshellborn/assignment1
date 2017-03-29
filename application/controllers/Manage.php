@@ -30,8 +30,6 @@ class Manage extends Application
                 );
         }
 
-
-
         $this->data['pagetitle'] = 'Manage'; //title
         $this->data['pagebody'] = 'manage'; //view file
         $this->data['error'] = $this->session->userdata('error');
@@ -64,7 +62,6 @@ class Manage extends Application
             $this->parts->deleteAll();
             $this->history->deleteAll();
             $this->robots->deleteAll();
-            $this->properties->deleteAll();
 
             //set session to flag api key needed
             $this->session->set_userdata('message', "Successfully rebooted plant.");
@@ -119,14 +116,87 @@ class Manage extends Application
                                         $caCodes[0] . '/' . $caCodes[1] . '/' . $caCodes[2] .
                                         '?key=' . $apikey);
 
-        if($response == "Ok") {
+        if(substr($response, 0,2) == "Ok") {
             //successfully sold
+            //remove robot from database
             $this->robots->remove($robotId);
+
+            //add transaction in history table
+            //adding part to history table
+            $data = array(
+                'timestamp' => date('Y-m-d H:i:s'),
+                'transactionType' => "Sold",
+                'Item' => "Assembled Robot",
+                'fromPlant' => 'kiwi',
+                'toPlant' => 'PRC',
+                'cost' => substr($response, 2),
+                'line' => $this->getLine($robot->partCodes),
+                'model' => $this->getModel($robot->partCodes)
+            );
+
+            $this->history->add($data);
+
+            //display message to user on success
             $this->session->set_userdata('message', "Robot successfully sold to PRC!");
         } else {
             //error
-            $this->session->set_userdata('error', substr($response, 4));
+            $this->session->set_userdata('error', $response);
         }
         redirect('/manage');
+    }
+
+    //Returns the line for the robot
+    public function getLine($partCodes) {
+        $household = 0;
+        $butler = 0;
+        $companion = 0;
+
+        foreach($partCodes as $partCode) {
+            $partCode = $partCode[0];
+            if (preg_match("/^[a-l]$/", $partCode)) {
+                $household++;
+            } else if(preg_match("/^[m-v]$/", $partCode)) {
+                $butler++;
+            } else {
+                $companion++;
+            }
+        }
+
+        if($household == 3) {
+            return "Household";
+        } else if($butler == 3) {
+            return "Butler";
+        } else if ($companion == 3) {
+            return "Companion";
+        } else {
+            return "Motely";
+        }
+    }
+
+
+    public function getModel($partCodes) {
+        $household = 0;
+        $butler = 0;
+        $companion = 0;
+
+        foreach($partCodes as $partCode) {
+            $partCode = $partCode[0];
+            if (preg_match("/^[a-l]$/", $partCode)) {
+                $model = strtoupper($partCode);
+                $household++;
+            } else if(preg_match("/^[m-v]$/", $partCode)) {
+                $model = strtoupper($partCode);
+                $butler++;
+            } else {
+                $model = strtoupper($partCode);
+                $companion++;
+            }
+        }
+
+        if($household == 3 || $butler == 3 || $companion == 3) {
+            return $model;
+        } else {
+            return "";
+        }
     }
 }

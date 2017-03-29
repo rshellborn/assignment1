@@ -1,5 +1,4 @@
-<div class="row" style="text-align:center;font-size:150%;color:#FF0000" 
-    
+<div class="row text-center">
     <span id="error">{error}</span>
 </div>
 <form action="assembly/handle" method="POST">
@@ -52,7 +51,6 @@
 
     <div class="text-center">
         <input class="btn btn-primary" type="submit" value="Assemble" name="submitType" />
-        <input class="btn btn-danger" type="submit" value="Return" name="submitType" />
     </div>
 </div>
 
@@ -68,11 +66,6 @@
     <input type="checkbox" value="{id}" id="checkbox" name="robot" />
     </div>
     {/robots}
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <input class="btn btn-danger" type="submit" value="Ship to Head Office" name="submitType" />
-            </div>
-        </div>
     </div>
 </div>
 </form>

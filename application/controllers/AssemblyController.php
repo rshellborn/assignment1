@@ -184,7 +184,23 @@ class AssemblyController extends Application
             'amount' => $amount
         );
 
-        $this->robots->add($data);
+        $robotId = $this->robots->add($data);
+
+        $robot = $this->robots->get($robotId);
+
+        //add assembly into history table
+        $data = array(
+            'timestamp' => date('Y-m-d H:i:s'),
+            'transactionType' => "Built",
+            'Item' => "Assembled Robot",
+            'fromPlant' => 'kiwi',
+            'toPlant' => 'kiwi',
+            'cost' => 0.00,
+            'line' => $this->getRobotLine($robot->partCodes),
+            'model' => $this->getRobotModel($robot->partCodes)
+        );
+
+        $this->history->add($data);
     }
 
     //this is for next time?
@@ -206,6 +222,62 @@ class AssemblyController extends Application
             return "Butler";
         } else {
             return "Companion";
+        }
+    }
+
+    //Returns the line for the robot
+    public function getRobotLine($partCodes) {
+        $household = 0;
+        $butler = 0;
+        $companion = 0;
+
+        foreach($partCodes as $partCode) {
+            $partCode = $partCode[0];
+            if (preg_match("/^[a-l]$/", $partCode)) {
+                $household++;
+            } else if(preg_match("/^[m-v]$/", $partCode)) {
+                $butler++;
+            } else {
+                $companion++;
+            }
+        }
+
+        if($household == 3) {
+            return "Household";
+        } else if($butler == 3) {
+            return "Butler";
+        } else if ($companion == 3) {
+            return "Companion";
+        } else {
+            return "Motely";
+        }
+    }
+
+
+    public function getRobotModel($partCodes)
+    {
+        $household = 0;
+        $butler = 0;
+        $companion = 0;
+
+        foreach ($partCodes as $partCode) {
+            $partCode = $partCode[0];
+            if (preg_match("/^[a-l]$/", $partCode)) {
+                $model = strtoupper($partCode);
+                $household++;
+            } else if (preg_match("/^[m-v]$/", $partCode)) {
+                $model = strtoupper($partCode);
+                $butler++;
+            } else {
+                $model = strtoupper($partCode);
+                $companion++;
+            }
+        }
+
+        if ($household == 3 || $butler == 3 || $companion == 3) {
+            return $model;
+        } else {
+            return "";
         }
     }
 

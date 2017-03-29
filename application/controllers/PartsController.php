@@ -107,7 +107,7 @@ class PartsController extends Application
             $data = array(
                 'caCode' => $part->id,
                 'partCode' => $part->model . $part->piece,
-                'amount' => 0.00,
+                'amount' => 10.00,
                 'plant' => $part->plant,
                 'timestamp' => $part->stamp
             );

@@ -1,7 +1,9 @@
+<br/>
+<div class="row text-center">
+    <span id="error">{error}</span>
+    <span id="message">{message}</span>
+</div>
 <div class="row">
-    <span class="error">{error}</span>
-    <span class="message">{message}</span>
-
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#home">Register with PRC</a></li>
         <li><a data-toggle="tab" href="#menu1">Sell Assembled Bot</a></li>
@@ -10,7 +12,7 @@
 
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active text-center">
-            <h3>Register with PRC</h3><br/>
+            <h3><strong>Register with PRC</strong></h3><br/>
             <form action="/manage/register" method="POST">
                 <label for="plant">Plant Name</label>
                 <span>kiwi</span><br/>
@@ -22,7 +24,7 @@
 
         </div>
         <div id="menu1" class="tab-pane fade text-center">
-            <h3>Sell Assembled Bot</h3>
+            <h3><strong>Sell Assembled Bot</strong></h3>
             <div class="row">
                 <div class="col-xs-12">
                     <h1 class="text-center"">Assembled Robots</h1>
@@ -41,7 +43,7 @@
             </div>
         </div>
         <div id="menu2" class="tab-pane fade text-center">
-            <h3>Reboot Plant</h3><br/>
+            <h3><strong>Reboot Plant</strong></h3><br/>
             <form action="/manage/reboot" method="POST">
                 <input type="submit" class="btn btn-success" value="Reboot Plant"/>
             </form>

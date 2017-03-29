@@ -23,7 +23,7 @@ body {background-color: #c9ffd6;}
 .alone { clear:both; margin:10px;}
 #footer {font-family: Arial, Verdana, Helvetica ; font-size: 9pt; font-style:italic; text-align:center;}
 #footer a {
-	color:white;
+	color:black;
 }
 .oneimage {padding:1em; width:300px;text-align:center;}
 
@@ -35,3 +35,14 @@ body {background-color: #c9ffd6;}
 
 #btnSearch,#btnClear{display: inline-block;vertical-align: top;}
 
+#error {
+    text-align:center;
+    font-size:150%;
+    color:#FF0000;
+}
+
+#message {
+    text-align:center;
+    font-size:150%;
+    color:#00cc44;
+}
