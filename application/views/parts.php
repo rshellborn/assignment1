@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row text-center">
     <span id="error">{error}</span>
 </div>
 <div class="row">
