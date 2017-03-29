@@ -21,7 +21,13 @@ class Manage extends Application
             $image2 = $parts[1];
             $image3 = $parts[2];
 
-            $robots[] = array ('id' => $record->id, 'amount' => $record->amount, 'image1' => $image1, 'image2' => $image2, 'image3' => $image3);
+            $robots[] = array (
+                'id' => $record->id, 
+                'amount' => $record->amount, 
+                'image1' => $image1,
+                'image2' => $image2,
+                'image3' => $image3
+                );
         }
 
 
@@ -30,7 +36,18 @@ class Manage extends Application
         $this->data['pagebody'] = 'manage'; //view file
         $this->data['error'] = $this->session->userdata('error');
         $this->data['message'] = $this->session->userdata('message');
-        $this->data['robots'] = $robots;
+        if (isSet($robots)){
+            $this->data['robots'] = $robots;
+        } else {
+            $robots[] = array (
+                'id' => "none", 
+                'amount' => 0, 
+                'image1' => "none1", 
+                'image2' => "none2", 
+                'image3' => "none3"
+                );
+            $this->data['robots'] = $robots;
+        }
 
         $this->render();
         $this->session->set_userdata('error', "");
@@ -86,6 +103,11 @@ class Manage extends Application
 
     public function sell() {
         $robotId = $this->input->post('robot');
+
+        if($robotId == "none") {
+            
+            redirect('/manage');
+        }
 
         $robot = $this->robots->get($robotId);
 
