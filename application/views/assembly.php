@@ -1,4 +1,5 @@
-<div class="row">
+<div class="row" style="text-align:center;font-size:150%;color:#FF0000" 
+    
     <span id="error">{error}</span>
 </div>
 <form action="assembly/handle" method="POST">
