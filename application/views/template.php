@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="/css/bootstrap-3.3.7-dist/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/lightbox.css" />
         <link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="/css/custom.css" />
 
         <style>
             .dropbtn {
