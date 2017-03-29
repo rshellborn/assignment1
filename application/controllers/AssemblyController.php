@@ -12,22 +12,28 @@ class AssemblyController extends Application
 	{
 		// build the list of robots, to pass on to our view
 		$source = $this->robots->all();
-
-		foreach ($source as $record)
-		{
-		    $parts = explode(',', $record->partCodes);
+        // check if robots are empty 
+        foreach ($source as $record)
+        {
+            $parts = explode(',', $record->partCodes);
 
             $image1 = $parts[0];
             $image2 = $parts[1];
             $image3 = $parts[2];
 
-			$robots[] = array ('id' => $record->id, 'amount' => $record->amount, 'image1' => $image1, 'image2' => $image2, 'image3' => $image3);
-		}
-
+            $robots[] = array (
+                'id' => $record->id, 
+                'amount' => $record->amount, 
+                'image1' => $image1, 
+                'image2' => $image2, 
+                'image3' => $image3
+                );
+        }
         // build the list of parts, to pass on to our view
         $source = $this->parts->all();
 
         $parts = array();
+        // check for null
         foreach ($source as $record)
         {
             $model = $record->partCode[0];
@@ -36,21 +42,73 @@ class AssemblyController extends Application
 
             if($piece == 1) {
                 //if top piece
-                $topParts[] = array('id' => $record->id, 'partCode' => $record->partCode, 'model' => strtoupper($model), 'line' => $line);
+                $topParts[] = array(
+                    'id' => $record->id, 
+                    'partCode' => $record->partCode, 
+                    'model' => strtoupper($model), 
+                    'line' => $line);
             } else if ($piece == 2) {
                 //if torso piece
-                $torsoParts[] = array('id' => $record->id, 'partCode' => $record->partCode, 'model' => strtoupper($model), 'line' => $line);
+                $torsoParts[] = array(
+                    'id' => $record->id, 
+                    'partCode' => $record->partCode, 
+                    'model' => strtoupper($model), 
+                    'line' => $line);
             } else if ($piece == 3) {
                 //if bottom piece
-                $bottomParts[] = array('id' => $record->id, 'partCode' => $record->partCode, 'model' => strtoupper($model), 'line' => $line);
+                $bottomParts[] = array(
+                    'id' => $record->id, 
+                    'partCode' => $record->partCode, 
+                    'model' => strtoupper($model), 
+                    'line' => $line);
             }
-        }
+        }        
 
-        // send the data to the view
-        $this->data['topParts'] = $topParts;
-        $this->data['torsoParts'] = $torsoParts;
-        $this->data['bottomParts'] = $bottomParts;
-		$this->data['robots'] = $robots;
+        // send the data to the view if a part exists
+        // else the parts are empty 
+        if (isSet($topParts)){
+            $this->data['topParts'] = $topParts;
+        } else {
+            $topParts[] = array(
+                    'id' => "none", 
+                    'partCode' => "none", 
+                    'model' => "No Top Parts", 
+                    'line' => "No Top Parts");
+            $this->data['topParts'] = $topParts;
+        }
+        if (isSet($torsoParts)){
+            $this->data['torsoParts'] = $torsoParts;
+        } else {
+            $torsoParts[] = array(
+                    'id' => "none", 
+                    'partCode' => "none", 
+                    'model' => "No Torso Parts", 
+                    'line' => "No Torso Parts");
+            $this->data['torsoParts'] = $torsoParts;
+        }
+        if (isSet($bottomParts)){
+            $this->data['bottomParts'] = $bottomParts;
+        } else {
+            $bottomParts[] = array(
+                    'id' => "none", 
+                    'partCode' => "none", 
+                    'model' => "No Bottom Parts", 
+                    'line' => "No Bottom Parts");
+            $this->data['bottomParts'] = $bottomParts;
+        }
+        if (isSet($robots)){
+            $this->data['robots'] = $robots;
+        } else {
+            $robots[] = array (
+                'id' => "none", 
+                'amount' => 0, 
+                'image1' => "none1", 
+                'image2' => "none2", 
+                'image3' => "none3"
+                );
+            $this->data['robots'] = $robots;
+        }
+		
         $this->data['error'] = $this->session->userdata('error');
         $this->data['pagetitle'] = 'Assembly';
         $this->data['pagebody'] = 'assembly';
@@ -77,7 +135,13 @@ class AssemblyController extends Application
         $bottom = $this->input->post('bottom');
 
         if($top == null || $torso == null || $bottom == null) {
-            $this->session->set_userdata('error', "You must select a top piece, torso piece, and bottom piece to assemble a robot!");
+            $this->session->set_userdata('error', 
+                "You must select a top piece, torso piece, and bottom piece to assemble a robot!");
+            redirect('/assembly');
+        }
+        if($top == "none" || $torso == "none" || $bottom == "none") {
+            $this->session->set_userdata('error', 
+                "You cannot select an empty top piece, torso piece, or bottom piece to assemble a robot!");
             redirect('/assembly');
         }
 
