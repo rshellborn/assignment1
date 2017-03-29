@@ -15,8 +15,9 @@
                 <label for="plant">Plant Name</label>
                 <span>kiwi</span><br/>
                 <label for="token">Token</label>
-                <input class="form-control" type="text" name="token"/>
-                <input type="submit" class="btn btn-primary" value="Register"/>
+                <input class="form-control customFormControl autoMargin" type="text" name="token"/>
+                <div class="addTopPadding"></div>
+                <input type="submit" class="btn btn-success" value="Register"/>
             </form>
 
         </div>
@@ -32,7 +33,7 @@
                         <img src="/img/{image3}.jpeg"/>
                         <h1>${amount}</h1>
                         <form action="/manage/sell" method="POST">
-                            <button class="btn btn-primary" type="submit" value="{id}" name="robot" >Sell Robot</button>
+                            <button class="btn btn-success" type="submit" value="{id}" name="robot" >Sell Robot</button>
                         </form>
                     </div>
                     {/robots}
@@ -42,7 +43,7 @@
         <div id="menu2" class="tab-pane fade text-center">
             <h3>Reboot Plant</h3><br/>
             <form action="/manage/reboot" method="POST">
-                <input type="submit" class="btn btn-danger" value="Reboot Plant"/>
+                <input type="submit" class="btn btn-success" value="Reboot Plant"/>
             </form>
         </div>
     </div>

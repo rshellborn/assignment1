@@ -5,8 +5,8 @@
     <!-- TODO add images -->
     <div class="row noMargin noBottomMargin">
         <div class="col-xs-12 text-center noBottomMargin">
-            <a href="parts/build"><button class="btn btn-primary">Build More Parts</button></a>
-            <a href="parts/buy"><button class="btn btn-primary">Buy Parts</button></a>
+            <a href="parts/build"><button class="btn btn-success">Build More Parts</button></a>
+            <a href="parts/buy"><button class="btn btn-success">Buy Parts</button></a>
         </div>
     </div>
     <table class="table table-bordered">
