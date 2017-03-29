@@ -16,7 +16,7 @@
 
         <style>
             .dropbtn {
-                background-color: #000;
+                background-color: #00cc44;
                 color: white;
                 padding: 16px;
                 font-size: 16px;
@@ -82,11 +82,13 @@
             <div id="header">
                 <span class="myhead"><img width="50px" src="/img/favicon.png" />Kiwi Plant</span>
                 <span class="mynav">
-                    <ul>
+                    <!--<ul>-->
+                        <ul class="nav nav-tabs">
                         {nav}
+                        
                         <li>
                             <div class="dropdown">
-                                <button onclick="myFunction()" class="dropbtn">Role</button>
+                                <button onclick="myFunction()" class="btn btn-success dropbtn">Role</button>
                                 <div id="myDropdown" class="dropdown-content">
                                     <a href="/roles/actor/Worker">Worker</a>
                                     <a href="/roles/actor/Supervisor">Supervisor</a>
@@ -95,7 +97,8 @@
                                 </div>
                             </div>
                         </li>
-                    </ul>
+                        </ul>
+                    <!--</ul>-->
                 </span>
             </div>
             <div class="alone"></div>
