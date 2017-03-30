@@ -50,7 +50,7 @@ class Application extends CI_Controller
 	//links for worker role
 	function getWorkerNav() {
 	    return '<li><a href="/">Home</a></li>
-                <li><a href="/parts">Parts</a></li>';
+                <li><a href="/manageparts">Parts</a></li>';
     }
 
     //links for guest role
@@ -62,7 +62,7 @@ class Application extends CI_Controller
     function getBossNav() {
         return '<li><a href="/">Home</a></li>
                 <li><a href="/manage">Manage</a></li>
-                <li><a href="/history">History</a></li>';
+                <li><a href="/viewhistory">History</a></li>';
     }
 
     //links for supervisor role

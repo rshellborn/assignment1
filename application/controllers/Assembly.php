@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AssemblyController extends Application
+class Assembly extends Application
 {
 
 	/**
@@ -124,8 +124,6 @@ class AssemblyController extends Application
             $this->assemble();
         } else if($type == "Return") {
             $this->returnPart();
-        } else if($type == "Ship to Head Office") {
-            $this->ship();
         }
     }
 
