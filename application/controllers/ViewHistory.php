@@ -7,7 +7,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class HistoryController extends Application
+class ViewHistory extends Application
 {
     private $items_per_page = 20;
     private $sort = "timestamp";

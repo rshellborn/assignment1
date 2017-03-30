@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PartsController extends Application
+class ManageParts extends Application
 {
 	public function index()
 	{
@@ -81,7 +81,7 @@ class PartsController extends Application
 
         if(substr($response, 0, 4) == "Oops") {
             $this->session->set_userdata('error', $response);
-            redirect('/parts');
+            redirect('/manageparts');
         }
 
         $parts = json_decode($response);
@@ -132,7 +132,7 @@ class PartsController extends Application
             $this->history->add($data);
         }
 
-        redirect('/parts');
+        redirect('/manageparts');
     }
 
     public function getPiece($piece) {

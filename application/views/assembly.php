@@ -8,7 +8,7 @@
         <div class="row noMargin customTopBorder customTopPadding noBottomMargin">
         {topParts}
         <div class="col-xs-4 text-center">
-                <a href="parts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
+                <a href="manageparts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
                 <span><strong>Line:</strong> {line}</span><br/>
                 <span><strong>Model:</strong> {model}</span><br/>
                 <input type="checkbox" value="{id}" id="checkbox" name="top" />
@@ -24,7 +24,7 @@
         <div class="row noMargin customTopBorder customTopPadding noBottomMargin">
             {torsoParts}
             <div class="col-xs-4 text-center">
-                    <a href="parts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
+                    <a href="manageparts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
                     <span><strong>Line:</strong> {line}</span><br/>
                     <span><strong>Model:</strong> {model}</span><br/>
                     <input type="checkbox" value="{id}" id="checkbox" name="torso" />
@@ -40,7 +40,7 @@
         <div class="row noMargin customTopBorder customTopPadding noBottomMargin">
         {bottomParts}
         <div class="col-xs-4 text-center">
-                <a href="parts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
+                <a href="manageparts/{id}"><img class="img-responsive" src="/img/{partCode}.jpeg" /></a><br/>
                 <span><strong>Line:</strong> {line}</span><br/>
                 <span><strong>Model:</strong> {model}</span><br/>
                 <input type="checkbox" value="{id}" id="checkbox" name="bottom" />
